@@ -2,7 +2,7 @@
 * @SHAYKHUL
 
 # Frontend directory requires review from frontend developers
-/frontend/ @frontend-dev1 @frontend-dev2
+#/frontend/ @frontend-dev1 @frontend-dev2
 
 # Backend directory owned by the backend team
 /backend/ @Algolizen-Inc/backend-team
