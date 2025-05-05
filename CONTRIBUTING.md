@@ -1,8 +1,3 @@
-Here’s a professional CONTRIBUTING.md template tailored for GitHub Free plan, with clear team rules, a clean workflow, and community discipline over enterprise-level enforcement:
-
-
----
-
 # Contributing Guidelines
 
 Welcome to the team! This document outlines the process and rules for contributing to this repository. Even without enforced branch protections, we follow a disciplined Git flow to maintain code quality and collaboration standards.
@@ -133,8 +128,3 @@ Keep it clean, keep it tight.
 ---
 
 Thanks for contributing—let's build responsibly.
-
----
-
-Let me know if you want this auto-formatted in a `.md` file for upload, or want a matching `PULL_REQUEST_TEMPLATE.md` to go with it.
-
