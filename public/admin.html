@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Algolizen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .tab-button {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: transparent;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    .tab-button.active {
+      border-color: #5F58F7;
+      background-color: #5F58F7;
+      color: white;
+    }
+    /* Markdown Preview Styling */
+    #markdown-preview {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #d1d5db; /* Light gray text */
+      word-wrap: break-word;
+    }
+
+    #markdown-preview h1, #markdown-preview h2, #markdown-preview h3, #markdown-preview h4, #markdown-preview h5, #markdown-preview h6 {
+      color: #ffffff; /* White headings */
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    #markdown-preview p {
+      margin-bottom: 1rem;
+    }
+
+    #markdown-preview a {
+      color: #5F58F7; /* Indigo links */
+      text-decoration: underline;
+    }
+
+    #markdown-preview ul, #markdown-preview ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #markdown-preview li {
+      margin-bottom: 0.5rem;
+    }
+
+    #markdown-preview blockquote {
+      border-left: 4px solid #5F58F7;
+      padding-left: 1rem;
+      color: #9ca3af; /* Gray text */
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    #markdown-preview code {
+      background-color: #1f2937; /* Dark gray background */
+      color: #10b981; /* Green text */
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #markdown-preview pre {
+      background-color: #1f2937; /* Dark gray background */
+      color: #ffffff; /* White text */
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    #markdown-preview table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    #markdown-preview th, #markdown-preview td {
+      border: 1px solid #374151; /* Gray border */
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    #markdown-preview th {
+      background-color: #4b5563; /* Darker gray background */
+      color: #ffffff; /* White text */
+    }
+
+    #markdown-preview img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #markdown-preview hr {
+      border: 0;
+      height: 1px;
+      background: #374151; /* Gray line */
+      margin: 1.5rem 0;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <!-- Header Section -->
+  <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md py-4">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-indigo-400">Admin Dashboard</h1>
+      <a href="/" class="text-indigo-400 hover:text-indigo-500">Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Main Content Section -->
+  <main class="py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-indigo-400 mb-8">Site Control Panel</h2>
+
+      <!-- Submitted Messages Section -->
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Submitted Messages</h3>
+        <div class="overflow-x-auto glass p-6 rounded-lg">
+          <table class="w-full text-left text-gray-300">
+            <thead>
+              <tr class="bg-gray-800 text-indigo-400">
+                <th class="py-3 px-4">ID</th>
+                <th class="py-3 px-4">Name</th>
+                <th class="py-3 px-4">Email</th>
+                <th class="py-3 px-4">Message</th>
+                <th class="py-3 px-4">Submitted At</th>
+                <th class="py-3 px-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="messages-table">
+              <!-- Messages will be dynamically inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Publish Blog Section -->
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Publish a Blog</h3>
+        <form id="blog-form" class="space-y-6 glass p-6 rounded-lg" enctype="multipart/form-data">
+          <div>
+            <label for="title" class="block text-gray-400">Title</label>
+            <input type="text" id="title" name="title" class="w-full p-3 rounded-lg bg-gray-800 text-white" placeholder="Blog Title" required>
+          </div>
+          <div>
+            <label for="content" class="block text-gray-400">Content (Markdown Supported)</label>
+            <div class="flex space-x-4 mb-4">
+              <button type="button" class="tab-button active" id="markdown-tab">Markdown</button>
+              <button type="button" class="tab-button" id="preview-tab">Preview</button>
+            </div>
+            <textarea id="content" name="content" rows="10" class="w-full p-3 rounded-lg bg-gray-800 text-white tab-content active" placeholder="Write your blog content in Markdown..." required></textarea>
+            <div id="markdown-preview" class="w-full p-3 rounded-lg bg-gray-800 text-white tab-content">
+              <p class="text-gray-400">Start typing in the content field to see the preview...</p>
+            </div>
+          </div>
+          <div>
+            <label for="image" class="block text-gray-400">Upload Blog Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" class="w-full p-3 rounded-lg bg-gray-800 text-white">
+          </div>
+          <button type="submit" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-semibold shadow-lg transition transform hover:scale-110">
+            Publish Blog
+          </button>
+        </form>
+      </section>
+
+      <!-- Site Health Section -->
+      <section>
+        <h3 class="text-2xl font-bold text-indigo-400 mb-4">Site Health</h3>
+        <div id="health-status" class="glass p-6 rounded-lg text-center text-gray-300">
+          Checking site health...
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="bg-black py-6 text-center text-gray-400">
+    <p>&copy; 2025 Algolizen. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    document.getElementById('markdown-tab').addEventListener('click', () => {
+      document.getElementById('markdown-tab').classList.add('active');
+      document.getElementById('preview-tab').classList.remove('active');
+      document.getElementById('content').classList.add('active');
+      document.getElementById('markdown-preview').classList.remove('active');
+    });
+
+    document.getElementById('preview-tab').addEventListener('click', () => {
+      document.getElementById('preview-tab').classList.add('active');
+      document.getElementById('markdown-tab').classList.remove('active');
+      document.getElementById('content').classList.remove('active');
+      document.getElementById('markdown-preview').classList.add('active');
+    });
+
+    // Live Markdown Preview
+    const contentInput = document.getElementById('content');
+    const markdownPreview = document.getElementById('markdown-preview');
+
+    contentInput.addEventListener('input', () => {
+      const markdownText = contentInput.value.trim();
+      if (markdownText) {
+        try {
+          markdownPreview.innerHTML = marked.parse(markdownText, {
+            breaks: true, // Enable line breaks
+            gfm: true,    // Enable GitHub-flavored Markdown
+            headerIds: true, // Add IDs to headers for linking
+            mangle: false, // Prevent email mangling
+          });
+        } catch (error) {
+          markdownPreview.innerHTML = '<p class="text-red-500">Error rendering Markdown. Please check your syntax.</p>';
+          console.error('Markdown rendering error:', error);
+        }
+      } else {
+        markdownPreview.innerHTML = '<p class="text-gray-400">Start typing in the content field to see the preview...</p>';
+      }
+    });
+
+    // Fetch messages and check health on page load
+    window.onload = () => {
+      fetchMessages();
+      checkHealth();
+    };
+
+    // Fetch messages from the server and populate the table
+    async function fetchMessages() {
+      try {
+        const response = await fetch('/api/messages');
+        const messages = await response.json();
+
+        const tableBody = document.getElementById('messages-table');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        if (messages.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4">No messages found.</td></tr>';
+          return;
+        }
+
+        messages.forEach((message) => {
+          const row = document.createElement('tr');
+          row.className = 'border-b border-gray-700 hover:bg-gray-800';
+
+          row.innerHTML = `
+            <td class="py-3 px-4">${message.id}</td>
+            <td class="py-3 px-4">${message.name}</td>
+            <td class="py-3 px-4">${message.email}</td>
+            <td class="py-3 px-4">${message.message}</td>
+            <td class="py-3 px-4">${new Date(message.submitted_at).toLocaleString()}</td>
+            <td class="py-3 px-4">
+              <button class="text-red-500 hover:text-red-400" onclick="deleteMessage(${message.id})">Delete</button>
+            </td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+        const tableBody = document.getElementById('messages-table');
+        tableBody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-red-500">Failed to load messages.</td></tr>';
+      }
+    }
+
+    // Delete a message
+    async function deleteMessage(id) {
+      if (!confirm('Are you sure you want to delete this message?')) return;
+
+      try {
+        const response = await fetch(`/api/messages/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+          alert('Message deleted successfully.');
+          fetchMessages(); // Refresh the table
+        } else {
+          alert('Failed to delete the message.');
+        }
+      } catch (error) {
+        console.error('Error deleting message:', error);
+        alert('An error occurred while deleting the message.');
+      }
+    }
+
+    // Check site health
+    async function checkHealth() {
+      try {
+        const response = await fetch('/health');
+        const status = await response.text();
+        const healthStatus = document.getElementById('health-status');
+        healthStatus.textContent = `Site Health: ${status}`;
+        healthStatus.classList.add('text-green-500');
+      } catch (error) {
+        console.error('Error checking site health:', error);
+        const healthStatus = document.getElementById('health-status');
+        healthStatus.textContent = 'Site Health: Unavailable';
+        healthStatus.classList.add('text-red-500');
+      }
+    }
+
+    // Handle blog form submission
+    document.getElementById('blog-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch('/api/blogs', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          alert('Blog published successfully!');
+          form.reset();
+        } else {
+          const errorData = await response.json();
+          alert(`Failed to publish blog: ${errorData.error}`);
+        }
+      } catch (error) {
+        console.error('Error publishing blog:', error);
+        alert('An error occurred while publishing the blog.');
+      }
+    });
+  </script>
+</body>
+</html>

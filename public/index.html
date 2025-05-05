@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Algolizen provides secure and scalable web and software solutions tailored to your business needs. We focus on innovation, performance, and security." />
+  <meta name="keywords" content="secure software, web development, custom software, security consulting, penetration testing, Algolizen" />
+  <meta name="author" content="Algolizen Team" />
+  <meta property="og:title" content="Algolizen | Secure Web & Software Solutions" />
+  <meta property="og:description" content="Algolizen provides secure and scalable web and software solutions tailored to your business needs." />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+  <meta property="og:url" content="https://www.algolizen.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Algolizen | Secure Web & Software Solutions" />
+  <meta name="twitter:description" content="Algolizen provides secure and scalable web and software solutions tailored to your business needs." />
+  <meta name="twitter:image" content="assets/images/og-image.jpg" />
+  <title>Algolizen | Secure Web & Software Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.umd.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            dark: '#0f172a',
+            glass: 'rgba(255, 255, 255, 0.1)',
+            secondary: '#374151',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif']
+          },
+          keyframes: {
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: 0, transform: 'translateY(20px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            },
+          },
+          animation: {
+            wiggle: 'wiggle 1s ease-in-out infinite',
+            fadeInUp: 'fadeInUp 1s ease-out forwards',
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .neumorph {
+      border-radius: 1rem;
+      background: linear-gradient(145deg, #1c1c1c, #2a2a2a);
+      box-shadow: 5px 5px 15px #0e0e0e, -5px -5px 15px #343434;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      transition: all 0.4s ease-in-out;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background-color: #1f2937;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      min-width: 180px;
+      background-color: #111827;
+    }
+    .dropdown-menu li:hover .submenu {
+      display: block;
+    }
+    /* Smooth transition for mobile menu */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#mobile-menu.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+#mobile-menu.flex {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Backdrop blur effect */
+.backdrop-blur-lg {
+  backdrop-filter: blur(10px);
+}
+
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <header class="sticky top-0 z-50 bg-transparent backdrop-blur-md transition-colors duration-300 ease-in-out" id="header">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <!-- Logo Section -->
+      <a href="/" class="flex items-center">
+        <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-8 w-auto">
+      </a>
+  
+      <!-- Navigation Section -->
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="/about" class="hover:text-indigo-400 transition-transform hover:scale-105">About</a>
+        <a href="/contact" class="hover:text-indigo-400 transition-transform hover:scale-105">Contact</a>
+        <a href="/blog" class="hover:text-indigo-400 transition-transform hover:scale-105">Blog</a>
+        <div class="relative dropdown">
+          <button class="hover:text-indigo-400 transition-transform hover:scale-105">Services</button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="block hover:text-indigo-500">Web Development</a></li>
+            <li><a href="#" class="block hover:text-indigo-500">Custom Software</a></li>
+            <li class="relative">
+              <a href="#" class="block hover:text-indigo-500">Security</a>
+              <ul class="submenu">
+                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Pen Testing</a></li>
+                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Audits</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Search Bar and CTA 
+      
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative">
+          <form action="/search" method="GET" class="flex">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search..."
+              class="px-4 py-2 rounded-l-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-r-full font-semibold"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+        
+        
+      </div>
+      
+      -->
+      
+  <a
+          href="/contact"
+          class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+        >
+          Get Started</a>
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-2xl text-white"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-50 bg-gray-900/90 backdrop-blur-lg text-white hidden transition-transform duration-500 transform translate-x-full"
+>
+  <!-- Header -->
+  <div class="flex justify-between items-center px-6 py-5 border-b border-gray-700">
+    
+    <button id="close-menu-btn" class="text-white text-2xl hover:text-indigo-400 transition">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Menu Items -->
+  <ul class="mt-10 space-y-4 px-6">
+    <li>
+      <a href="/service" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-concierge-bell text-indigo-400"></i>
+        <span>Services</span>
+      </a>
+    </li>
+    <li>
+      <a href="/about" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-user text-indigo-400"></i>
+        <span>About</span>
+      </a>
+    </li>
+    <li>
+      <a href="/contact" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-envelope text-indigo-400"></i>
+        <span>Contact</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-code text-indigo-400"></i>
+        <span>Web Development</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-cogs text-indigo-400"></i>
+        <span>Custom Software</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-shield-alt text-indigo-400"></i>
+        <span>Security</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+  </header>
+  
+  <script>
+    // Change header background on scroll
+   <!--  window.addEventListener("scroll", function () {
+      const header = document.getElementById("header");
+      if (window.scrollY > 50) {
+        header.classList.add("bg-black/70");
+      } else {
+        header.classList.remove("bg-black/70");
+      }
+    }); -->
+  
+    // Toggle mobile menu
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.remove("hidden");
+      menu.classList.add("flex");
+    });
+
+    // Close mobile menu
+    document.getElementById("close-menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.add("hidden");
+      menu.classList.remove("flex");
+    });
+  </script>
+  
+  <section class="py-24 relative">
+    <div class="max-w-4xl mx-auto text-center px-4 animate-fadeInUp" data-aos="fade-up">
+      <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" style="width: 100%; height: 300px;" loop autoplay></lottie-player>
+      <h2 class="text-5xl font-extrabold mt-6">
+        Building <span class="text-indigo-400">Secure</span> Software for the Future
+      </h2>
+      <p class="text-lg text-gray-400 mt-4">
+        We create custom software solutions focused on performance, security, and scalability.
+      </p>
+      <a href="/contact" class="mt-8 inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-semibold shadow-lg transition transform hover:scale-110">
+        Start a Project
+      </a>
+    </div>
+  </section>
+
+  <section id="services" class="py-24 bg-gray-950 text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-4xl font-bold text-center mb-12 text-indigo-400" data-aos="fade-up">Our Services</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <!-- Secure Web Development -->
+        <div
+          class="card glass p-8 rounded-xl hover:shadow-2xl transition-transform transform hover:scale-105 relative"
+          data-aos="fade-up"
+        >
+          <div class="absolute top-0 left-0 bg-indigo-600 text-white px-4 py-1 rounded-br-lg text-sm font-semibold">
+            Popular
+          </div>
+          <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-code text-5xl text-indigo-500"></i>
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-400 mb-4 text-center">Secure Web Development</h4>
+          <p class="text-gray-300 text-center mb-6">
+            Build secure, scalable, and high-performance web applications tailored to your business needs.
+          </p>
+          <div class="text-center">
+            <a
+              href="/service"
+              class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+  
+        <!-- Custom Software -->
+        <div
+          class="card glass p-8 rounded-xl hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-cogs text-5xl text-indigo-500"></i>
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-400 mb-4 text-center">Custom Software</h4>
+          <p class="text-gray-300 text-center mb-6">
+            Tailored software solutions designed to optimize your business processes and drive growth.
+          </p>
+          <div class="text-center">
+            <a
+              href="/service"
+              class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+  
+        <!-- Security Consulting -->
+        <div
+          class="card glass p-8 rounded-xl hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-shield-alt text-5xl text-indigo-500"></i>
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-400 mb-4 text-center">Security Consulting</h4>
+          <p class="text-gray-300 text-center mb-6">
+            Comprehensive security audits and penetration testing to protect your digital assets.
+          </p>
+          <div class="text-center">
+            <a
+              href="/service"
+              class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+            >
+              Explore More
+            </a>
+          </div>
+        </div>
+  
+        <!-- Web Penetration Testing -->
+        <div
+          class="card glass p-8 rounded-xl hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-bug text-5xl text-indigo-500"></i>
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-400 mb-4 text-center">Web Penetration Testing</h4>
+          <p class="text-gray-300 text-center mb-6">
+            Identify and fix vulnerabilities in your web applications to ensure robust security.
+          </p>
+          <div class="text-center">
+            <a
+              href="/service"
+              class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+  
+        <!-- Cloud Solutions -->
+        <div
+          class="card glass p-8 rounded-xl hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-cloud text-5xl text-indigo-500"></i>
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-400 mb-4 text-center">Cloud Solutions</h4>
+          <p class="text-gray-300 text-center mb-6">
+            Scalable and secure cloud solutions to enhance your business operations and flexibility.
+          </p>
+          <div class="text-center">
+            <a
+              href="/service"
+              class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+            >
+              Discover More
+            </a>
+          </div>
+        </div>
+  
+        <!-- AI & Machine Learning -->
+        <div
+          class="card glass p-8 rounded-xl hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          <div class="flex items-center justify-center mb-6">
+            <i class="fas fa-robot text-5xl text-indigo-500"></i>
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-400 mb-4 text-center">AI & Machine Learning</h4>
+          <p class="text-gray-300 text-center mb-6">
+            Leverage AI and machine learning to automate processes and gain valuable insights.
+          </p>
+          <div class="text-center">
+            <a
+              href="/service"
+              class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-choose-us" class="py-24 bg-gray-950 text-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-10">
+      <!-- Text Content -->
+      <div data-aos="fade-right">
+        <h3 class="text-4xl font-bold mb-6">Why Choose Us?</h3>
+        <ul class="space-y-6" role="list">
+          <li class="flex items-start" role="listitem" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-award text-indigo-500 text-3xl mr-4" aria-hidden="true"></i>
+            <div>
+              <h4 class="text-xl font-semibold text-indigo-500">Proven Expertise</h4>
+              <p class="text-gray-400">Years of experience delivering secure and scalable software solutions.</p>
+            </div>
+          </li>
+          <li class="flex items-start" role="listitem" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-headset text-indigo-500 text-3xl mr-4" aria-hidden="true"></i>
+            <div>
+              <h4 class="text-xl font-semibold text-indigo-500">24/7 Support</h4>
+              <p class="text-gray-400">Dedicated support team available around the clock to assist you.</p>
+            </div>
+          </li>
+          <li class="flex items-start" role="listitem" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-lightbulb text-indigo-500 text-3xl mr-4" aria-hidden="true"></i>
+            <div>
+              <h4 class="text-xl font-semibold text-indigo-500">Innovative Solutions</h4>
+              <p class="text-gray-400">We leverage the latest technologies to deliver cutting-edge solutions.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Image -->
+      <div data-aos="fade-left">
+        <img src="assets/images/why-choose-us.jpg" alt="Professional team delivering innovative software solutions" class="rounded-lg shadow-lg" loading="lazy">
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="pricing" class="py-24 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Our Pricing Plans</h3>
+      <div class="flex justify-center mb-8">
+        <button
+          id="monthly-btn"
+          class="px-4 py-2 bg-indigo-600 text-white rounded-l-lg font-semibold hover:bg-indigo-700 transition-all duration-300"
+        >
+          Monthly
+        </button>
+        <button
+          id="yearly-btn"
+          class="px-4 py-2 bg-gray-700 text-white rounded-r-lg font-semibold hover:bg-gray-800 transition-all duration-300"
+        >
+          Yearly
+        </button>
+      </div>
+      <div class="grid md:grid-cols-3 gap-10">
+        <!-- Basic Plan -->
+        <div
+          class="card glass p-8 rounded-xl text-center hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="zoom-in"
+        >
+          <h4 class="text-2xl font-semibold text-indigo-500 mb-4">Basic</h4>
+          <p class="text-gray-300 mb-6">Perfect for small businesses and startups.</p>
+          <p class="text-4xl font-bold text-white mb-6">
+            <span id="basic-price">$99</span><span class="text-lg font-medium">/month</span>
+          </p>
+          <ul class="text-gray-300 space-y-2 mb-6">
+            <li>✔ Secure Web Development</li>
+            <li>✔ Basic Support</li>
+            <li>✔ 5 Pages Website</li>
+          </ul>
+          <a
+            href="#contact"
+            class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+          >
+            Get Started
+          </a>
+        </div>
+  
+        <!-- Pro Plan -->
+        <div
+          class="card glass p-8 rounded-xl text-center border-2 border-indigo-500 hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="zoom-in"
+          data-aos-delay="100"
+        >
+          <div
+            class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-semibold"
+          >
+            Most Popular
+          </div>
+          <h4 class="text-2xl font-semibold text-indigo-500 mb-4">Pro</h4>
+          <p class="text-gray-300 mb-6">Ideal for growing businesses.</p>
+          <p class="text-4xl font-bold text-white mb-6">
+            <span id="pro-price">$199</span><span class="text-lg font-medium">/month</span>
+          </p>
+          <ul class="text-gray-300 space-y-2 mb-6">
+            <li>✔ Custom Software Development</li>
+            <li>✔ Priority Support</li>
+            <li>✔ 10 Pages Website</li>
+          </ul>
+          <a
+            href="#contact"
+            class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+          >
+            Get Started
+          </a>
+        </div>
+  
+        <!-- Enterprise Plan -->
+        <div
+          class="card glass p-8 rounded-xl text-center hover:shadow-2xl transition-transform transform hover:scale-105"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <h4 class="text-2xl font-semibold text-indigo-500 mb-4">Enterprise</h4>
+          <p class="text-gray-300 mb-6">Best for large-scale businesses.</p>
+          <p class="text-4xl font-bold text-white mb-6">
+            <span id="enterprise-price">$499</span><span class="text-lg font-medium">/month</span>
+          </p>
+          <ul class="text-gray-300 space-y-2 mb-6">
+            <li>✔ Full Security Consulting</li>
+            <li>✔ Dedicated Support</li>
+            <li>✔ Unlimited Pages</li>
+          </ul>
+          <a
+            href="#contact"
+            class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-semibold shadow-lg transition transform hover:scale-110"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Pricing Toggle Logic
+    const monthlyPrices = { basic: 99, pro: 199, enterprise: 499 };
+    const yearlyPrices = { basic: 990, pro: 1990, enterprise: 4990 };
+  
+    const basicPrice = document.getElementById("basic-price");
+    const proPrice = document.getElementById("pro-price");
+    const enterprisePrice = document.getElementById("enterprise-price");
+  
+    const monthlyBtn = document.getElementById("monthly-btn");
+    const yearlyBtn = document.getElementById("yearly-btn");
+  
+    monthlyBtn.addEventListener("click", () => {
+      basicPrice.textContent = `$${monthlyPrices.basic}`;
+      proPrice.textContent = `$${monthlyPrices.pro}`;
+      enterprisePrice.textContent = `$${monthlyPrices.enterprise}`;
+  
+      // Update button styles
+      monthlyBtn.classList.add("bg-indigo-600", "hover:bg-indigo-700", "text-white");
+      monthlyBtn.classList.remove("bg-gray-700", "hover:bg-gray-800");
+  
+      yearlyBtn.classList.add("bg-gray-700", "hover:bg-gray-800", "text-white");
+      yearlyBtn.classList.remove("bg-indigo-600", "hover:bg-indigo-700");
+    });
+  
+    yearlyBtn.addEventListener("click", () => {
+      basicPrice.textContent = `$${yearlyPrices.basic}`;
+      proPrice.textContent = `$${yearlyPrices.pro}`;
+      enterprisePrice.textContent = `$${yearlyPrices.enterprise}`;
+  
+      // Update button styles
+      yearlyBtn.classList.add("bg-indigo-600", "hover:bg-indigo-700", "text-white");
+      yearlyBtn.classList.remove("bg-gray-700", "hover:bg-gray-800");
+  
+      monthlyBtn.classList.add("bg-gray-700", "hover:bg-gray-800", "text-white");
+      monthlyBtn.classList.remove("bg-indigo-600", "hover:bg-indigo-700");
+    });
+  </script>
+
+  <section id="faq" class="py-24 bg-gray-950 text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h3 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Frequently Asked Questions</h3>
+    <div class="space-y-6">
+      <!-- Question 1 -->
+      <div class="border border-gray-700 rounded-lg">
+        <button
+          class="w-full text-left px-6 py-4 bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex justify-between items-center"
+          onclick="toggleFaq('faq1')"
+        >
+          <span>What services does Algolizen provide?</span>
+          <i id="faq1-icon" class="fas fa-plus"></i>
+        </button>
+        <div id="faq1" class="hidden px-6 py-4 bg-gray-800 text-gray-400">
+          Algolizen provides secure web development, custom software solutions, security consulting, and web penetration testing services.
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="border border-gray-700 rounded-lg">
+        <button
+          class="w-full text-left px-6 py-4 bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex justify-between items-center"
+          onclick="toggleFaq('faq2')"
+        >
+          <span>How can I get started with Algolizen?</span>
+          <i id="faq2-icon" class="fas fa-plus"></i>
+        </button>
+        <div id="faq2" class="hidden px-6 py-4 bg-gray-800 text-gray-400">
+          You can get started by contacting us through our website or clicking the "Get Started" button to fill out a project inquiry form.
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="border border-gray-700 rounded-lg">
+        <button
+          class="w-full text-left px-6 py-4 bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex justify-between items-center"
+          onclick="toggleFaq('faq3')"
+        >
+          <span>What industries do you serve?</span>
+          <i id="faq3-icon" class="fas fa-plus"></i>
+        </button>
+        <div id="faq3" class="hidden px-6 py-4 bg-gray-800 text-gray-400">
+          We serve a wide range of industries, including finance, healthcare, e-commerce, education, and more.
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="border border-gray-700 rounded-lg">
+        <button
+          class="w-full text-left px-6 py-4 bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex justify-between items-center"
+          onclick="toggleFaq('faq4')"
+        >
+          <span>Do you offer ongoing support?</span>
+          <i id="faq4-icon" class="fas fa-plus"></i>
+        </button>
+        <div id="faq4" class="hidden px-6 py-4 bg-gray-800 text-gray-400">
+          Yes, we provide ongoing support and maintenance to ensure your software and systems run smoothly.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Toggle FAQ visibility
+  function toggleFaq(id) {
+    const content = document.getElementById(id);
+    const icon = document.getElementById(`${id}-icon`);
+    if (content.classList.contains('hidden')) {
+      content.classList.remove('hidden');
+      icon.classList.replace('fa-plus', 'fa-minus');
+    } else {
+      content.classList.add('hidden');
+      icon.classList.replace('fa-minus', 'fa-plus');
+    }
+  }
+</script>
+
+<footer class="bg-gray-900 text-gray-400 py-12 relative">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+    <!-- About Section -->
+    <div>
+      <h4 class="text-xl font-semibold text-white mb-4">About Algolizen</h4>
+      <p class="text-gray-400">
+        Algolizen provides secure and scalable web and software solutions tailored to your business needs. We focus on innovation, performance, and security.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4 class="text-xl font-semibold text-white mb-4">Quick Links</h4>
+      <ul class="space-y-2">
+        <li><a href="/service" class="hover:text-indigo-500 transition">Services</a></li>
+        <li><a href="/about" class="hover:text-indigo-500 transition">About Us</a></li>
+        <li><a href="/contact" class="hover:text-indigo-500 transition">Contact</a></li>
+        <li><a href="#pricing" class="hover:text-indigo-500 transition">Pricing</a></li>
+        <li><a href="#why-choose-us" class="hover:text-indigo-500 transition">Why Choose Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter Subscription -->
+    <div>
+      <h4 class="text-xl font-semibold text-white mb-4">Subscribe to Our Newsletter</h4>
+      <p class="text-gray-400 mb-4">Stay updated with the latest news and offers from Algolizen.</p>
+      <form action="#" method="POST" class="flex flex-col space-y-4">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          required
+        />
+        <button
+          type="submit"
+          class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-105"
+        >
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+    <!-- Social Media Links -->
+    <div>
+      <h4 class="text-xl font-semibold text-white mb-4">Follow Us</h4>
+      <p class="text-gray-400 mb-4">Connect with us on social media:</p>
+      <div class="flex space-x-4">
+        <a href="https://github.com/Algolizen-Inc" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/company/algolizen/" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/algolizen" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-twitter"></i></a>
+        <a href="https://facebook.com/algolizen" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com/algolizen" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="mt-12 border-t border-gray-700 pt-6 text-center">
+    <p>&copy; 2025 Algolizen. All rights reserved.</p>
+    <p class="mt-2">
+      Designed by <a href="/" class="hover:text-indigo-500 transition">Algolizen Team</a>.
+    </p>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button
+    id="back-to-top"
+    class="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition transform hover:scale-110"
+    title="Back to Top"
+  >
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</footer>
+
+<script>
+  // Back to Top Button Functionality
+  const backToTopButton = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.style.display = 'block';
+    } else {
+      backToTopButton.style.display = 'none';
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+  <script>
+    AOS.init();
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("hidden");
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuBtn = document.getElementById("menu-btn");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      // Open mobile menu
+      menuBtn.addEventListener("click", function () {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.classList.add("flex");
+      });
+
+      // Close mobile menu
+      closeMenuBtn.addEventListener("click", function () {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+      });
+
+      // Close menu when clicking outside
+      window.addEventListener("click", function (e) {
+        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("flex");
+        }
+      });
+    });
+  </script>
+  
+  
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/655b066e91e5c13bb5b1c67c/1hflp289a';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

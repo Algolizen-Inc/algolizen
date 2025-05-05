@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Algolizen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      transition: all 0.4s ease-in-out;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+    .timeline {
+      border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      background: #6366f1;
+      border-radius: 50%;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background-color: #1f2937;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      min-width: 180px;
+      background-color: #111827;
+    }
+    .dropdown-menu li:hover .submenu {
+      display: block;
+    }
+    /* Smooth transition for mobile menu */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#mobile-menu.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+#mobile-menu.flex {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Backdrop blur effect */
+.backdrop-blur-lg {
+  backdrop-filter: blur(10px);
+}
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <header class="sticky top-0 z-50 bg-transparent backdrop-blur-md transition-colors duration-300 ease-in-out" id="header">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <!-- Logo Section -->
+      <a href="/" class="flex items-center">
+        <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-8 w-auto">
+      </a>
+  
+      <!-- Navigation Section -->
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="/service" class="hover:text-indigo-400 transition-transform hover:scale-105">Services</a>
+        <a href="/about" class="hover:text-indigo-400 transition-transform hover:scale-105">About</a>
+        <a href="/contact" class="hover:text-indigo-400 transition-transform hover:scale-105">Contact</a>
+        <div class="relative dropdown">
+          <button class="hover:text-indigo-400 transition-transform hover:scale-105">Solutions</button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="block hover:text-indigo-500">Web Development</a></li>
+            <li><a href="#" class="block hover:text-indigo-500">Custom Software</a></li>
+            <li class="relative">
+              <a href="#" class="block hover:text-indigo-500">Security</a>
+              <ul class="submenu">
+                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Pen Testing</a></li>
+                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Audits</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Search Bar and CTA -->
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <a href="#contact" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110">
+          Get Started
+        </a>
+      </div>
+  
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-2xl text-white"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-90 backdrop-blur-lg text-white hidden z-50 transition-transform transform translate-x-full">
+      <div class="flex justify-between items-center px-6 py-4">
+        <h2 class="text-2xl font-bold">Menu</h2>
+        <button id="close-menu-btn" class="text-3xl"><i class="fas fa-times"></i></button>
+      </div>
+      <ul class="space-y-6 text-center mt-12 text-lg">
+        <li><a href="/service" class="block hover:text-indigo-400">Services</a></li>
+        <li><a href="/about" class="block hover:text-indigo-400">About</a></li>
+        <li><a href="/contact" class="block hover:text-indigo-400">Contact</a></li>
+        <li><a href="#" class="block hover:text-indigo-400">Web Development</a></li>
+        <li><a href="#" class="block hover:text-indigo-400">Custom Software</a></li>
+        <li><a href="#" class="block hover:text-indigo-400">Security</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <script>
+    // Change header background on scroll
+    window.addEventListener("scroll", function () {
+      const header = document.getElementById("header");
+      if (window.scrollY > 50) {
+        header.classList.add("bg-black/70");
+      } else {
+        header.classList.remove("bg-black/70");
+      }
+    });
+  
+    // Toggle mobile menu
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("hidden");
+    });
+
+    // Close mobile menu
+    document.getElementById("close-menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.add("hidden");
+    });
+  </script>
+
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-5xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">About Us</h1>
+      <div class="text-center mb-12">
+        <p class="text-lg text-gray-300" data-aos="fade-up">
+          At Algolizen, we are passionate about delivering secure, scalable, and innovative software solutions. Our mission is to empower businesses with cutting-edge technology while ensuring the highest standards of security and performance.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Mission -->
+        <div class="glass p-8 rounded-xl" data-aos="fade-up">
+          <h2 class="text-3xl font-bold text-indigo-400 mb-4">Our Mission</h2>
+          <p class="text-gray-300">
+            To provide businesses with secure and scalable software solutions that drive growth, enhance efficiency, and protect digital assets.
+          </p>
+        </div>
+        <!-- Vision -->
+        <div class="glass p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-3xl font-bold text-indigo-400 mb-4">Our Vision</h2>
+          <p class="text-gray-300">
+            To be a global leader in secure software development, recognized for innovation, reliability, and excellence in service delivery.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">Our Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-up">
+          <h3 class="text-xl font-semibold text-indigo-400">2020</h3>
+          <p class="text-gray-300">Founded with a mission to deliver secure and scalable software solutions.</p>
+        </div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-semibold text-indigo-400">2022</h3>
+          <p class="text-gray-300">Expanded our services to include security consulting and enterprise solutions.</p>
+        </div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-semibold text-indigo-400">2025</h3>
+          <p class="text-gray-300">Recognized as a leader in secure software development globally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">Meet Our Team</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <!-- Team Member 1 -->
+        <div class="glass p-8 rounded-xl text-center" data-aos="fade-up">
+          <img src="assets/images/abdur.jpeg" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-indigo-400">Abdur Rahman Howlader</h3>
+          <p class="text-gray-300">Founder & CEO</p>
+          <p class="text-gray-400 text-sm mt-2">Abdur Rahman is an Expert on Digital Marketing & Sales Professional | Helping Businesses Grow on Social Media and Get More Clients</p>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="glass p-8 rounded-xl text-center" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/images/Shaykhul.jpg" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-indigo-400">Md Shaykhul Islam</h3>
+          <p class="text-gray-300">Security Expert</p>
+          <p class="text-gray-400 text-sm mt-2">Shaykhul is an expert in penetration testing and vulnerability assessments, ensuring robust digital defenses.</p>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="glass p-8 rounded-xl text-center" data-aos="fade-up" data-aos-delay="200">
+          <img src="assets/images/Ridom.jpeg" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-indigo-400">Shahriar Ridom</h3>
+          <p class="text-gray-300">Project Manager</p>
+          <p class="text-gray-400 text-sm mt-2">Shahriar ensures timely delivery of projects while maintaining the highest quality standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gray-950">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">Technologies We Use</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Frontend Technologies -->
+      <div class="flex items-center space-x-6 bg-gray-900 p-6 rounded-lg hover:shadow-lg transition-transform transform hover:scale-105" data-aos="fade-up">
+        <i class="fas fa-laptop-code text-5xl text-indigo-400"></i>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-400 mb-2">Frontend</h3>
+          <p class="text-gray-300">React, Angular, Vue.js, Tailwind CSS, Bootstrap</p>
+        </div>
+      </div>
+      <!-- Backend Technologies -->
+      <div class="flex items-center space-x-6 bg-gray-900 p-6 rounded-lg hover:shadow-lg transition-transform transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-server text-5xl text-indigo-400"></i>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-400 mb-2">Backend</h3>
+          <p class="text-gray-300">Node.js, Django, Flask, Laravel, Spring Boot</p>
+        </div>
+      </div>
+      <!-- DevOps and Cloud -->
+      <div class="flex items-center space-x-6 bg-gray-900 p-6 rounded-lg hover:shadow-lg transition-transform transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-cloud text-5xl text-indigo-400"></i>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-400 mb-2">DevOps & Cloud</h3>
+          <p class="text-gray-300">AWS, Azure, Docker, Kubernetes, Jenkins</p>
+        </div>
+      </div>
+      <!-- Databases -->
+      <div class="flex items-center space-x-6 bg-gray-900 p-6 rounded-lg hover:shadow-lg transition-transform transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-database text-5xl text-indigo-400"></i>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-400 mb-2">Databases</h3>
+          <p class="text-gray-300">MySQL, PostgreSQL, MongoDB, Redis, Firebase</p>
+        </div>
+      </div>
+      <!-- Security Tools -->
+      <div class="flex items-center space-x-6 bg-gray-900 p-6 rounded-lg hover:shadow-lg transition-transform transform hover:scale-105" data-aos="fade-up" data-aos-delay="400">
+        <i class="fas fa-shield-alt text-5xl text-indigo-400"></i>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-400 mb-2">Security</h3>
+          <p class="text-gray-300">OWASP ZAP, Burp Suite, Metasploit, Nessus</p>
+        </div>
+      </div>
+      <!-- Other Tools -->
+      <div class="flex items-center space-x-6 bg-gray-900 p-6 rounded-lg hover:shadow-lg transition-transform transform hover:scale-105" data-aos="fade-up" data-aos-delay="500">
+        <i class="fas fa-tools text-5xl text-indigo-400"></i>
+        <div>
+          <h3 class="text-2xl font-semibold text-indigo-400 mb-2">Other Tools</h3>
+          <p class="text-gray-300">Git, GitHub, Bitbucket, Jira, Slack</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="py-24 bg-gray-900">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">Frequently Asked Questions</h2>
+    <div class="space-y-8">
+      <!-- FAQ Item 1 -->
+      <div class="glass p-6 rounded-xl" data-aos="fade-up">
+        <h3 class="text-2xl font-semibold text-indigo-400">What services does Algolizen offer?</h3>
+        <p class="text-gray-300 mt-2">
+          Algolizen provides secure and scalable software solutions, including web development, security consulting, and enterprise solutions.
+        </p>
+      </div>
+      <!-- FAQ Item 2 -->
+      <div class="glass p-6 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-2xl font-semibold text-indigo-400">How can I contact Algolizen?</h3>
+        <p class="text-gray-300 mt-2">
+          You can reach us through our <a href="contact.html" class="text-indigo-400 hover:underline">Contact</a> page or via our social media channels.
+        </p>
+      </div>
+      <!-- FAQ Item 3 -->
+      <div class="glass p-6 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-2xl font-semibold text-indigo-400">Where is Algolizen located?</h3>
+        <p class="text-gray-300 mt-2">
+          Algolizen operates globally, with a focus on delivering services to clients worldwide.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <footer class="bg-black py-10 text-center text-gray-400">
+    <p>&copy; 2025 Algolizen. All rights reserved.</p>
+    <div class="mt-4 space-x-4">
+      <a href="#" class="hover:text-indigo-500"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#" class="hover:text-indigo-500"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="#" class="hover:text-indigo-500"><i class="fab fa-twitter"></i> Twitter</a>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

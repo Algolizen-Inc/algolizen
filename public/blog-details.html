@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Details | Algolizen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Markdown Styling */
+    #blog-details {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #d1d5db; /* Light gray text */
+    }
+
+    #blog-details h1, #blog-details h2, #blog-details h3, #blog-details h4, #blog-details h5, #blog-details h6 {
+      color: #ffffff; /* White headings */
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    #blog-details p {
+      margin-bottom: 1rem;
+    }
+
+    #blog-details a {
+      color: #5F58F7; /* Indigo links */
+      text-decoration: underline;
+    }
+
+    #blog-details ul, #blog-details ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #blog-details li {
+      margin-bottom: 0.5rem;
+    }
+
+    #blog-details blockquote {
+      border-left: 4px solid #5F58F7;
+      padding-left: 1rem;
+      color: #9ca3af; /* Gray text */
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    #blog-details code {
+      background-color: #1f2937; /* Dark gray background */
+      color: #10b981; /* Green text */
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #blog-details pre {
+      background-color: #1f2937; /* Dark gray background */
+      color: #ffffff; /* White text */
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    #blog-details table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    #blog-details th, #blog-details td {
+      border: 1px solid #374151; /* Gray border */
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    #blog-details th {
+      background-color: #4b5563; /* Darker gray background */
+      color: #ffffff; /* White text */
+    }
+
+    #blog-details img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #blog-details hr {
+      border: 0;
+      height: 1px;
+      background: #374151; /* Gray line */
+      margin: 1.5rem 0;
+    }
+
+    /* Table of Contents Styling */
+    #toc {
+      background-color: #1f2937; /* Dark gray background */
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    #toc a {
+      color: #5F58F7;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    #toc a:hover {
+      text-decoration: underline;
+    }
+    a, button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  a:hover, button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  </style>
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:title" content="Blog Title Here">
+  <meta property="og:description" content="A brief description of the blog content goes here.">
+  <meta property="og:image" content="https://example.com/path-to-blog-image.jpg">
+  <meta property="og:url" content="https://example.com/blog-details.html">
+  <meta property="og:type" content="article">
+
+  <!-- Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog Title Here">
+  <meta name="twitter:description" content="A brief description of the blog content goes here.">
+  <meta name="twitter:image" content="https://example.com/path-to-blog-image.jpg">
+  <meta name="twitter:url" content="https://example.com/blog-details.html">
+</head>
+<body class="bg-gray-950 text-white">
+  <header class="sticky top-0 z-50 bg-black/50 backdrop-blur-md shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="flex items-center">
+        <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-12 w-auto">
+      </a>
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="index.html" class="hover:text-indigo-400">Home</a>
+        <a href="blog.html" class="hover:text-indigo-400">Blog</a>
+      </nav>
+      <!-- Dark/Light Mode Toggle Button -->
+      <button id="theme-toggle" class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-400">Toggle Theme</button>
+    </div>
+  </header>
+
+  <section class="py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <!-- Table of Contents -->
+      <div id="toc" class="glass p-6 rounded-xl mb-8">
+        <h2 class="text-2xl font-bold text-indigo-400 mb-4">Table of Contents</h2>
+        <div id="toc-links"></div>
+      </div>
+
+      <!-- Blog Details -->
+      <div id="blog-details" class="glass p-8 rounded-xl">
+        <!-- Blog details will be dynamically inserted here -->
+      </div>
+
+      <!-- Social Sharing -->
+      <div class="mt-8 flex justify-center space-x-4">
+        <a href="#" id="share-twitter" class="flex items-center space-x-2 text-blue-400 hover:text-blue-500">
+          <img src="assets/icons/twitter.svg" alt="Twitter" class="h-6 w-6">
+          <span>Share on Twitter</span>
+        </a>
+        <a href="#" id="share-facebook" class="flex items-center space-x-2 text-blue-600 hover:text-blue-700">
+          <img src="assets/icons/facebook.svg" alt="Facebook" class="h-6 w-6">
+          <span>Share on Facebook</span>
+        </a>
+        <a href="#" id="share-linkedin" class="flex items-center space-x-2 text-blue-700 hover:text-blue-800">
+          <img src="assets/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6">
+          <span>Share on LinkedIn</span>
+        </a>
+        <button id="copy-link" class="flex items-center space-x-2 text-gray-400 hover:text-indigo-400">
+          <img src="assets/icons/link.svg" alt="Copy Link" class="h-6 w-6">
+          <span>Copy Link</span>
+        </button>
+      </div>
+
+      <!-- Comments Section -->
+      <div id="comments" class="mt-12 glass p-6 rounded-xl">
+        <h2 class="text-2xl font-bold text-indigo-400 mb-4">Comments</h2>
+        <textarea id="comment-input" class="w-full p-4 rounded-lg bg-gray-800 text-white" placeholder="Write a comment..."></textarea>
+        <button id="submit-comment" class="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-400">Submit</button>
+        <div id="comment-list" class="mt-6 space-y-4">
+          <!-- Comments will be dynamically added here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black py-10 text-center text-gray-400">
+    <p>&copy; 2025 Algolizen. All rights reserved.</p>
+  </footer>
+
+  <script>
+    async function fetchBlogDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const blogId = params.get('id');
+
+      if (!blogId) {
+        document.getElementById('blog-details').innerHTML = '<p class="text-center text-gray-400">No blog selected.</p>';
+        return;
+      }
+
+      // Show loading spinner
+      document.getElementById('blog-details').innerHTML = `
+        <div class="text-center">
+          <div class="loader"></div>
+          <p>Loading blog...</p>
+        </div>
+      `;
+
+      try {
+        const response = await fetch(`/api/blogs/${blogId}`);
+        const blog = await response.json();
+
+        if (!blog) {
+          document.getElementById('blog-details').innerHTML = `
+            <p class="text-center text-gray-400">Blog not found.</p>
+            <button id="retry-button" class="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-400">Retry</button>
+          `;
+          document.getElementById('retry-button').addEventListener('click', fetchBlogDetails);
+          return;
+        }
+
+        // Render blog details
+        const wordCount = blog.content.split(/\s+/).length;
+        const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
+        const renderedContent = marked.parse(blog.content, { breaks: true, gfm: true, headerIds: true, mangle: false });
+
+        document.getElementById('blog-details').innerHTML = `
+          ${blog.image_url ? `<img src="${blog.image_url}" alt="${blog.title}" class="w-full h-64 object-cover rounded-lg mb-4">` : ''}
+          <h1 class="text-4xl font-bold text-indigo-400 mb-4">${blog.title}</h1>
+          <p class="text-gray-500 text-sm mb-4">Published on: ${new Date(blog.published_at).toLocaleDateString()} | Reading Time: ${readingTime} min</p>
+          <div class="text-gray-300">${renderedContent}</div>
+        `;
+
+        // Update metadata for social sharing
+        updateMetaTags(blog);
+
+        // Generate Table of Contents
+        generateTableOfContents();
+
+        // Update Social Sharing Links
+        updateSocialSharingLinks(blog);
+      } catch (error) {
+        console.error('Error fetching blog details:', error);
+        document.getElementById('blog-details').innerHTML = `
+          <p class="text-center text-red-500">Failed to load blog details. Please try again later.</p>
+          <button id="retry-button" class="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-400">Retry</button>
+        `;
+        document.getElementById('retry-button').addEventListener('click', fetchBlogDetails);
+      }
+    }
+
+    // Generate Table of Contents
+    function generateTableOfContents() {
+      const tocLinks = document.getElementById('toc-links');
+      const headings = document.querySelectorAll('#blog-details h1, #blog-details h2, #blog-details h3');
+
+      // Clear existing TOC links
+      tocLinks.innerHTML = '';
+
+      if (headings.length === 0) {
+        tocLinks.innerHTML = '<p class="text-gray-400">No headings available.</p>';
+        return;
+      }
+
+      headings.forEach((heading, index) => {
+        const id = `heading-${index}`;
+        heading.id = id; // Assign unique ID to each heading
+        tocLinks.innerHTML += `<a href="#${id}" class="toc-link block text-gray-300 hover:text-indigo-400">${heading.textContent}</a>`;
+      });
+
+      // Add smooth scrolling for TOC links with offset adjustment
+      document.querySelectorAll('.toc-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          // Adjust scroll position to account for sticky header height
+          const headerOffset = 120; // Adjust this value based on your header height
+          const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+          const offsetPosition = elementPosition - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        });
+      });
+
+      // Highlight TOC links on scroll
+      const debounce = (func, delay) => {
+        let timeout;
+        return (...args) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func(...args), delay);
+        };
+      };
+
+      const highlightTOCLinks = () => {
+        let current = '';
+        headings.forEach(heading => {
+          const sectionTop = heading.offsetTop - 120; // Adjust offset for sticky header
+          if (window.scrollY >= sectionTop) {
+            current = heading.id;
+          }
+        });
+
+        document.querySelectorAll('.toc-link').forEach(link => {
+          link.classList.remove('text-indigo-400');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('text-indigo-400');
+          }
+        });
+      };
+
+      window.addEventListener('scroll', debounce(highlightTOCLinks, 100));
+    }
+
+    function updateMetaTags(blog) {
+      // Update Open Graph metadata
+      document.querySelector('meta[property="og:title"]').setAttribute('content', blog.title);
+      document.querySelector('meta[property="og:description"]').setAttribute('content', blog.description || blog.content.slice(0, 150));
+      document.querySelector('meta[property="og:image"]').setAttribute('content', blog.image_url || '/uploads/default-image.jpg');
+      document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+
+      // Update Twitter Card metadata
+      document.querySelector('meta[name="twitter:title"]').setAttribute('content', blog.title);
+      document.querySelector('meta[name="twitter:description"]').setAttribute('content', blog.description || blog.content.slice(0, 150));
+      document.querySelector('meta[name="twitter:image"]').setAttribute('content', blog.image_url || '/uploads/default-image.jpg');
+      document.querySelector('meta[name="twitter:url"]').setAttribute('content', window.location.href);
+    }
+
+    function updateSocialSharingLinks(blog) {
+      const blogUrl = window.location.href;
+      const encodedTitle = encodeURIComponent(blog.title);
+      const encodedUrl = encodeURIComponent(blogUrl);
+
+      document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+      document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+      document.getElementById('share-linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
+
+      // Copy Link to Clipboard
+      document.getElementById('copy-link').addEventListener('click', () => {
+        navigator.clipboard.writeText(blogUrl).then(() => {
+          alert('Blog link copied to clipboard!');
+        }).catch(err => {
+          console.error('Failed to copy link:', err);
+        });
+      });
+    }
+
+    // Handle Comments
+    document.getElementById('submit-comment').addEventListener('click', () => {
+      const commentInput = document.getElementById('comment-input');
+      const commentList = document.getElementById('comment-list');
+      const commentText = commentInput.value.trim();
+
+      if (commentText) {
+        const commentElement = document.createElement('div');
+        commentElement.className = 'p-4 bg-gray-800 rounded-lg flex justify-between items-center';
+        commentElement.innerHTML = `
+          <div>
+            <p>${commentText}</p>
+            <p class="text-sm text-gray-500 mt-2">${new Date().toLocaleString()}</p>
+          </div>
+          <button class="delete-comment text-red-500 hover:text-red-400">Delete</button>
+        `;
+        commentList.appendChild(commentElement);
+
+        // Save comment to local storage
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+        comments.push({ text: commentText, timestamp: new Date().toLocaleString() });
+        localStorage.setItem('comments', JSON.stringify(comments));
+
+        commentInput.value = '';
+
+        // Add delete functionality
+        commentElement.querySelector('.delete-comment').addEventListener('click', () => {
+          commentElement.remove();
+          const updatedComments = comments.filter(comment => comment.text !== commentText);
+          localStorage.setItem('comments', JSON.stringify(updatedComments));
+        });
+      }
+    });
+
+    // Load Comments from Local Storage
+    function loadComments() {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentList = document.getElementById('comment-list');
+      comments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.className = 'p-4 bg-gray-800 rounded-lg flex justify-between items-center';
+        commentElement.innerHTML = `
+          <div>
+            <p>${comment.text}</p>
+            <p class="text-sm text-gray-500 mt-2">${comment.timestamp}</p>
+          </div>
+          <button class="delete-comment text-red-500 hover:text-red-400">Delete</button>
+        `;
+        commentList.appendChild(commentElement);
+
+        // Add delete functionality
+        commentElement.querySelector('.delete-comment').addEventListener('click', () => {
+          commentElement.remove();
+          const updatedComments = comments.filter(c => c.text !== comment.text);
+          localStorage.setItem('comments', JSON.stringify(updatedComments));
+        });
+      });
+    }
+
+    // Dark/Light Mode Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('bg-gray-950');
+      document.body.classList.toggle('bg-white');
+      document.body.classList.toggle('text-white');
+      document.body.classList.toggle('text-black');
+    });
+
+    window.onload = () => {
+      fetchBlogDetails();
+      loadComments();
+    };
+  </script>
+</body>
+</html>

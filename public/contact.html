@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Algolizen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      transition: all 0.3s ease-in-out;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background-color: #1f2937;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      min-width: 180px;
+      background-color: #111827;
+    }
+    .dropdown-menu li:hover .submenu {
+      display: block;
+    }
+    /* Smooth transition for mobile menu */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#mobile-menu.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+#mobile-menu.flex {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Backdrop blur effect */
+.backdrop-blur-lg {
+  backdrop-filter: blur(10px);
+}
+
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+  <header class="sticky top-0 z-50 bg-transparent backdrop-blur-md transition-colors duration-300 ease-in-out" id="header">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <!-- Logo Section -->
+      <a href="/" class="flex items-center">
+        <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-8 w-auto">
+      </a>
+  
+      <!-- Navigation Section -->
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="/service" class="hover:text-indigo-400 transition-transform hover:scale-105">Services</a>
+        <a href="/about" class="hover:text-indigo-400 transition-transform hover:scale-105">About</a>
+        <a href="/contact" class="hover:text-indigo-400 transition-transform hover:scale-105">Contact</a>
+        <div class="relative dropdown">
+          <button class="hover:text-indigo-400 transition-transform hover:scale-105">Solutions</button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="block hover:text-indigo-500">Web Development</a></li>
+            <li><a href="#" class="block hover:text-indigo-500">Custom Software</a></li>
+            <li class="relative">
+              <a href="#" class="block hover:text-indigo-500">Security</a>
+              <ul class="submenu">
+                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Pen Testing</a></li>
+                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Audits</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Search Bar and CTA -->
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <a href="#contact" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110">
+          Get Started
+        </a>
+      </div>
+  
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-2xl text-white"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-90 backdrop-blur-lg text-white hidden z-50 transition-transform transform translate-x-full">
+      <div class="flex justify-between items-center px-6 py-4">
+        <h2 class="text-2xl font-bold">Menu</h2>
+        <button id="close-menu-btn" class="text-3xl"><i class="fas fa-times"></i></button>
+      </div>
+      <ul class="space-y-6 text-center mt-12 text-lg">
+        <li><a href="/service" class="block hover:text-indigo-400">Services</a></li>
+        <li><a href="/about" class="block hover:text-indigo-400">About</a></li>
+        <li><a href="/contact" class="block hover:text-indigo-400">Contact</a></li>
+        <li><a href="#" class="block hover:text-indigo-400">Web Development</a></li>
+        <li><a href="#" class="block hover:text-indigo-400">Custom Software</a></li>
+        <li><a href="#" class="block hover:text-indigo-400">Security</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <script>
+    // Change header background on scroll
+    window.addEventListener("scroll", function () {
+      const header = document.getElementById("header");
+      if (window.scrollY > 50) {
+        header.classList.add("bg-black/70");
+      } else {
+        header.classList.remove("bg-black/70");
+      }
+    });
+  
+    // Toggle mobile menu
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("hidden");
+    });
+
+    // Close mobile menu
+    document.getElementById("close-menu-btn").addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.add("hidden");
+    });
+  </script>
+
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-5xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">Contact Us</h1>
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Contact Form -->
+        <div class="glass p-8 rounded-xl" data-aos="fade-up">
+          <h2 class="text-3xl font-bold text-indigo-400 mb-6">Get in Touch</h2>
+          <!-- Feedback Message -->
+          <div id="form-feedback" class="hidden p-4 rounded-lg text-center mb-4 transition-all duration-300 ease-in-out"></div>
+          <form action="/submit-form" method="POST" class="space-y-6" id="contact-form">
+            <div>
+              <label for="name" class="block text-gray-400">Name</label>
+              <input type="text" id="name" name="name" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-indigo-500" placeholder="Your Name" required>
+            </div>
+            <div>
+              <label for="email" class="block text-gray-400">Email</label>
+              <input type="email" id="email" name="email" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-indigo-500" placeholder="Your Email" required>
+            </div>
+            <div>
+              <label for="message" class="block text-gray-400">Message</label>
+              <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-indigo-500" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full font-semibold shadow-lg transition transform hover:scale-110">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="glass p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="text-3xl font-bold text-indigo-400 mb-6">Contact Details</h2>
+          <p class="text-gray-300 mb-4"><i class="fas fa-map-marker-alt text-indigo-500"></i> C&B Road, Nathullabad, Barisal</p>
+          <p class="text-gray-300 mb-4"><i class="fas fa-phone-alt text-indigo-500"></i> +8801728518343</p>
+          <p class="text-gray-300 mb-4">
+            <i class="fas fa-envelope text-indigo-500"></i> 
+            <a href="mailto:contact@algolizen.com" class="hover:text-indigo-400">contact@algolizen.com</a>
+          </p>
+          <button
+            class="mt-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-105"
+            onclick="window.location.href='mailto:contact@algolizen.com?subject=Inquiry&body=Hello Algolizen Team,'"
+          >
+            Mail Us
+          </button>
+          <h3 class="text-xl font-semibold text-indigo-400 mt-6">Follow Us</h3>
+          <div class="mt-4 space-x-4">
+            <a href="https://github.com/Algolizen-Inc" class="hover:text-indigo-500"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/company/algolizen/" class="hover:text-indigo-500"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://x.com/algolizen" class="hover:text-indigo-500"><i class="fab fa-twitter"></i> Twitter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-indigo-400 mb-12" data-aos="fade-up">Our Location</h2>
+      <div class="rounded-lg overflow-hidden shadow-lg" data-aos="fade-up">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153169!3d-37.81627974202144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d8b5e4b0b1e!2sSecure%20Lane%2C%20Tech%20City!5e0!3m2!1sen!2sus!4v1614311234567!5m2!1sen!2sus" 
+          width="100%" 
+          height="400" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black py-10 text-center text-gray-400">
+    <p>&copy; 2025 Algolizen. All rights reserved.</p>
+  </footer>
+
+  <script>
+    AOS.init();
+  </script>
+  <script>
+    document.querySelector('form').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+      const formData = new FormData(event.target);
+
+      const response = await fetch('https://algolizen.com/submit-form', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('Form submitted successfully!');
+      } else {
+        alert('Failed to submit the form.');
+      }
+    });
+
+    // Handle form submission with AJAX
+    document.getElementById('contact-form').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const form = event.target;
+      const formData = new FormData(form);
+      const feedback = document.getElementById('form-feedback');
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+        });
+
+        if (response.ok) {
+          feedback.textContent = 'Your message has been sent successfully!';
+          feedback.className = 'p-4 rounded-lg text-center mb-4 bg-green-500 text-white shadow-lg transition-all duration-300 ease-in-out';
+          form.reset(); // Clear the form after successful submission
+        } else {
+          const errorData = await response.json();
+          feedback.textContent = `Failed to send your message: ${errorData.error || 'Unknown error'}`;
+          feedback.className = 'p-4 rounded-lg text-center mb-4 bg-red-500 text-white shadow-lg transition-all duration-300 ease-in-out';
+        }
+      } catch (error) {
+        console.error('Error submitting the form:', error);
+        feedback.textContent = 'An error occurred while submitting the form. Please try again.';
+        feedback.className = 'p-4 rounded-lg text-center mb-4 bg-red-500 text-white shadow-lg transition-all duration-300 ease-in-out';
+      }
+
+      feedback.classList.remove('hidden'); // Show the feedback message
+
+      // Automatically hide the feedback message after 5 seconds
+      setTimeout(() => {
+        feedback.classList.add('hidden');
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
