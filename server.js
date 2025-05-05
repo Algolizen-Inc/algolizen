@@ -4,7 +4,7 @@ const multer = require('multer');
 const sqlite3 = require('sqlite3').verbose();
 const { open } = require('sqlite');
 const fs = require('fs');
-const marked = require('marked');
+const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -48,7 +48,7 @@ servePage('/', 'index.html');
 servePage('/about', 'about.html');
 servePage('/contact', 'contact.html');
 servePage('/service', 'service.html');
-servePage('/admin', 'admin.html');
+servePage('/admin-login', 'admin-login.html');
 servePage('/blog', 'blog.html');
 servePage('/search', 'search.html');
 servePage('/blog/:id', 'blog-detail.html');
@@ -86,6 +86,52 @@ let db;
     process.exit(1);
   }
 })();
+
+// Admin user credentials (for demonstration, simple plain-text credentials)
+const ADMIN_USER = {
+  username: 'admin',
+  password: 'admin123',
+};
+
+// Session and authentication setup
+app.use(session({
+  secret: 'super_secure_secret_key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 }, // 1 hour
+}));
+
+// Admin authentication middleware
+function requireAdminAuth(req, res, next) {
+  if (req.session.isAdmin) return next();
+  res.redirect('/admin-login');
+}
+
+// Admin login route
+app.post('/admin/login', express.urlencoded({ extended: true }), (req, res) => {
+  const { username, password } = req.body;
+
+  console.log('Received Credentials:', { username, password }); // Debugging line
+
+  if (username === ADMIN_USER.username && password === ADMIN_USER.password) {
+    req.session.isAdmin = true;
+    return res.redirect('/admin');
+  }
+
+  res.status(401).send('❌ Invalid credentials');
+});
+
+// Logout route
+app.get('/admin/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/admin-login');
+  });
+});
+
+// Protected /admin route
+app.get('/admin', requireAdminAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
 
 // Handle form submission
 app.post('/submit-form', upload.none(), async (req, res) => {
@@ -161,12 +207,11 @@ app.get('/api/blogs/:id', async (req, res) => {
       return res.status(404).json({ error: 'Blog not found.' });
     }
 
-    // Ensure the image URL is served correctly
     const imageUrl = blog.image_url ? `${req.protocol}://${req.get('host')}${blog.image_url}` : null;
 
     res.status(200).json({
       ...blog,
-      image_url: imageUrl, // Return the full URL for the image
+      image_url: imageUrl,
     });
   } catch (err) {
     console.error('❌ Fetch blog details error:', err);
@@ -174,7 +219,7 @@ app.get('/api/blogs/:id', async (req, res) => {
   }
 });
 
-// Mock data for search (replace with database or file-based search logic)
+// Search API (static mock data for search)
 const searchData = [
   { title: 'Secure Web Development', description: 'Learn about our secure web development services.', url: '/service' },
   { title: 'Custom Software Solutions', description: 'Explore our custom software solutions.', url: '/service' },
@@ -183,20 +228,38 @@ const searchData = [
 ];
 
 // API endpoint for search
-app.get('/api/search', (req, res) => {
+app.get('/api/search', async (req, res) => {
   const query = req.query.q?.toLowerCase();
   if (!query) {
     return res.status(400).json({ error: 'Search query is required.' });
   }
 
-  const results = searchData.filter(
-    (item) =>
-      item.title.toLowerCase().includes(query) ||
-      item.description.toLowerCase().includes(query)
-  );
+  try {
+    const blogs = await db.all(`SELECT id, title, content FROM blogs`);
+    const matchedBlogs = blogs.filter(
+      (blog) =>
+        blog.title.toLowerCase().includes(query) ||
+        blog.content.toLowerCase().includes(query)
+    ).map(blog => ({
+      title: blog.title,
+      description: blog.content.slice(0, 150),
+      url: `/blog/${blog.id}`
+    }));
 
-  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.status(200).json(results);
+    const staticResults = searchData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query)
+    );
+
+    const results = [...staticResults, ...matchedBlogs];
+
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.status(200).json(results);
+  } catch (err) {
+    console.error('❌ Search error:', err);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
 });
 
 app.post('/api/live-support', express.json(), (req, res) => {
@@ -206,66 +269,15 @@ app.post('/api/live-support', express.json(), (req, res) => {
     return res.status(400).json({ error: 'Message is required.' });
   }
 
-  // Mock response from a support agent
   const responses = [
     "Hello! How can I assist you today?",
-    "Thank you for reaching out. Let me check that for you.",
-    "Can you please provide more details?",
-    "Our team is looking into your issue. Please hold on.",
+    "Thank you for reaching out. Let me help you.",
+    "We are here to help you with any inquiries."
   ];
-  const randomResponse = responses[Math.floor(Math.random() * responses.length)];
 
-  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.status(200).json({ response: randomResponse });
+  res.status(200).json({ response: responses[Math.floor(Math.random() * responses.length)] });
 });
 
-app.get('/blog/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const blog = await db.get(`SELECT * FROM blogs WHERE id = ?`, [id]);
-    if (!blog) {
-      return res.status(404).send('Blog not found');
-    }
-
-    const imageUrl = blog.image_url ? `${req.protocol}://${req.get('host')}${blog.image_url}` : '/uploads/default-image.jpg';
-
-    res.send(`
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${blog.title}</title>
-        <meta property="og:title" content="${blog.title}">
-        <meta property="og:description" content="${blog.description || blog.content.slice(0, 150)}">
-        <meta property="og:image" content="${imageUrl}">
-        <meta property="og:url" content="${req.protocol}://${req.get('host')}${req.originalUrl}">
-        <meta property="og:type" content="article">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="${blog.title}">
-        <meta name="twitter:description" content="${blog.description || blog.content.slice(0, 150)}">
-        <meta name="twitter:image" content="${imageUrl}">
-        <meta name="twitter:url" content="${req.protocol}://${req.get('host')}${req.originalUrl}">
-      </head>
-      <body>
-        <h1>${blog.title}</h1>
-        <p>${blog.content}</p>
-      </body>
-      </html>
-    `);
-  } catch (err) {
-    console.error('Error fetching blog:', err);
-    res.status(500).send('Internal server error');
-  }
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
-});
-
-// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server is running on port ${PORT}`);
 });
