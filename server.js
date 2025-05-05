@@ -19,7 +19,7 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
 });
 
-// Serve static files
+// Serve the static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve uploaded images
