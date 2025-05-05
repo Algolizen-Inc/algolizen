@@ -1,0 +1,8 @@
+# All files require review from @team-lead
+* @team-lead
+
+# Only the frontend folder requires review from frontend devs
+/frontend/ @frontend-dev1 @frontend-dev2
+
+# Backend owned by the backend team
+/backend/ @backend-team
