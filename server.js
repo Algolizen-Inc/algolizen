@@ -16,7 +16,7 @@ if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 // Configure multer for image uploads
 const upload = multer({
   dest: path.join(dataDir, 'uploads'),
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit fot it
 });
 
 // Serve the static files here
