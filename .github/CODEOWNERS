@@ -1,8 +1,8 @@
-# All files require review from @SHAYKHUL
+# All files require review from the team lead (SHAYKHUL)
 * @SHAYKHUL
 
-# Only the frontend folder requires review from frontend devs
+# Frontend directory requires review from frontend developers
 /frontend/ @frontend-dev1 @frontend-dev2
 
-# Backend owned by the backend team
-/backend/ @backend-team
+# Backend directory owned by the backend team
+/backend/ @Algolizen-Inc/backend-team
