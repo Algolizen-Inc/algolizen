@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Template Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .card-overlay {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .card:hover .card-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-[#030712] text-white font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-black/50 backdrop-blur-md shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <a href="index.html" class="flex items-center">
+        <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-8 w-auto">
+      </a>
+      <!-- Navigation Section -->
+      <nav class="hidden md:flex space-x-8 text-lg">
+        
+        <a href="/home" class="hover:text-indigo-400 transition-transform hover:scale-105">Home</a>
+        <a href="/service" class="hover:text-indigo-400 transition-transform hover:scale-105">Services</a>
+        <a href="/projects" class="hover:text-indigo-400 transition-transform hover:scale-105">Projects</a>
+        <a href="/blog" class="hover:text-indigo-400 transition-transform hover:scale-105">Blog</a>
+        <a href="/about" class="hover:text-indigo-400 transition-transform hover:scale-105">About</a>
+      
+      </nav>
+  
+  
+      <!-- Search Bar and CTA -->
+      <!-- Search Bar and CTA -->
+      <div class="hidden md:flex items-center space-x-4">
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <!-- Food & Hospitality Section -->
+ <!-- Food & Hospitality Section -->
+ <section class="px-4 md:px-12 lg:px-24 py-16 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">🍽 Food & Hospitality</h2>
+      <p class="text-gray-400 text-lg">Websites for food businesses, restaurants, and hospitality services.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Card Example -->
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/Resturant.jpg" alt="Restaurant Website" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+
+        <!-- Overlay content on hover -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Restaurant Website</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <!-- Copy this card block and replace content for each site -->
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/WhatsApp Image 2025-05-06 at 01.21.48_e209628b.jpg" alt="Café Website" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Café Website</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/rbtcoT6.jpg" alt="Food Truck Site" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Food Truck Site</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <!-- Continue for remaining cards with same structure -->
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/catering-service-landing-page-template_23-2151140123.jpg" alt="Catering Service" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Catering Service</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/02_preview.avif" alt="Hotel Site" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Hotel Site</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/01577669a8852fefe00ee227deda54a0905ed3afa4a896d568e76595c1ded05f1702373054121.jpg" alt="Vacation Rental" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Vacation Rental</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/41d20a49-3ae2-4f1a-937a-e6ce09bb816c.avif" alt="B&B Website" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">B&B Website</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/preview1600_1000 (1).jpeg" alt="Event Space Site" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Event Space Site</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+      <div class="relative group rounded-2xl overflow-hidden shadow-2xl card">
+        <img src="assets/tempalets-image/maxresdefault.jpg" alt="Online Menu Site" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col justify-center items-center text-center p-4 card-overlay">
+          <h3 class="text-2xl font-semibold mb-3 text-white">Online Menu Site</h3>
+          <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition">View Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 relative">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+      <!-- About Section -->
+      <div>
+        <h4 class="text-xl font-semibold text-white mb-4">About Algolizen</h4>
+        <p class="text-gray-400">
+          Algolizen provides secure and scalable web and software solutions tailored to your business needs. We focus on innovation, performance, and security.
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-xl font-semibold text-white mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="/service" class="hover:text-indigo-500 transition">Services</a></li>
+          <li><a href="/about" class="hover:text-indigo-500 transition">About Us</a></li>
+          <li><a href="/contact" class="hover:text-indigo-500 transition">Contact</a></li>
+          <li><a href="#pricing" class="hover:text-indigo-500 transition">Pricing</a></li>
+          <li><a href="#why-choose-us" class="hover:text-indigo-500 transition">Why Choose Us</a></li>
+        </ul>
+      </div>
+  
+      <!-- Newsletter Subscription -->
+      <div>
+        <h4 class="text-xl font-semibold text-white mb-4">Subscribe to Our Newsletter</h4>
+        <p class="text-gray-400 mb-4">Stay updated with the latest news and offers from Algolizen.</p>
+        <form action="#" method="POST" class="flex flex-col space-y-4">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="px-4 py-2 rounded-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
+          />
+          <button
+            type="submit"
+            class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-105"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+  
+      <!-- Social Media Links -->
+      <div>
+        <h4 class="text-xl font-semibold text-white mb-4">Follow Us</h4>
+        <p class="text-gray-400 mb-4">Connect with us on social media:</p>
+        <div class="flex space-x-4">
+          <a href="https://github.com/Algolizen-Inc" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/company/algolizen/" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-linkedin"></i></a>
+          <a href="https://x.com/algolizen" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-twitter"></i></a>
+          <a href="https://facebook.com/algolizen" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-facebook"></i></a>
+          <a href="https://instagram.com/algolizen" class="hover:text-indigo-500 text-2xl transition"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Bottom Section -->
+    <div class="mt-12 border-t border-gray-700 pt-6 text-center">
+      <p>&copy; 2025 Algolizen. All rights reserved.</p>
+      <p class="mt-2">
+        Designed by <a href="/" class="hover:text-indigo-500 transition">Algolizen Team</a>.
+      </p>
+    </div>
+  
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition transform hover:scale-110"
+      title="Back to Top"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </footer>
+  
+  <script>
+    // Back to Top Button Functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.style.display = 'block';
+      } else {
+        backToTopButton.style.display = 'none';
+      }
+    });
+  
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    </script>
+
+</body>
+</html>
