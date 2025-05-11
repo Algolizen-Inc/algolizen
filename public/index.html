@@ -3,23 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Algolizen provides secure and scalable web and software solutions tailored to your business needs. We focus on innovation, performance, and security." />
-  <meta name="keywords" content="secure software, web development, custom software, security consulting, penetration testing, Algolizen" />
+  <meta name="description" content="Algolizen provides secure, scalable software and web solutions with a focus on innovation, cybersecurity, and performance." />
+  <meta name="keywords" content="secure software, web development, penetration testing, cybersecurity, DevSecOps, custom apps, Algolizen" />
   <meta name="author" content="Algolizen Team" />
+  <link rel="canonical" href="https://www.algolizen.com/" />
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Algolizen | Secure Web & Software Solutions" />
-  <meta property="og:description" content="Algolizen provides secure and scalable web and software solutions tailored to your business needs." />
-  <meta property="og:image" content="assets/images/og-image.jpg" />
+  <meta property="og:description" content="Secure, scalable software solutions tailored to your business goals." />
+  <meta property="og:image" content="https://www.algolizen.com/assets/images/logo.png" />
   <meta property="og:url" content="https://www.algolizen.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Algolizen | Secure Web & Software Solutions" />
-  <meta name="twitter:description" content="Algolizen provides secure and scalable web and software solutions tailored to your business needs." />
-  <meta name="twitter:image" content="assets/images/og-image.jpg" />
+  <meta name="twitter:description" content="Secure, scalable software solutions tailored to your business goals." />
+  <meta name="twitter:image" content="https://www.algolizen.com/assets/images/og-image.jpg" />
+
   <title>Algolizen | Secure Web & Software Solutions</title>
+  <link rel="icon" type="image/png" href="https://www.algolizen.com/assets/images/sitelogo.png">
+
+  <!-- Preload Fonts -->
+  <link rel="preload" href="assets/fonts/inter.css" as="style">
+  <link href="assets/fonts/inter.css" rel="stylesheet">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Algolizen",
+    "url": "https://www.algolizen.com",
+    "logo": "https://www.algolizen.com/assets/images/logo.png",
+    "description": "Algolizen delivers secure and scalable software development and security consulting services.",
+    "sameAs": [
+      "https://www.linkedin.com/company/algolizen",
+      "https://twitter.com/algolizen"
+    ]
+  }
+  </script>
+
+  <!-- Tailwind & Plugins -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/framer-motion@10.12.16/dist/framer-motion.umd.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -51,8 +84,8 @@
       },
     };
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Custom CSS -->
   <style>
     body { font-family: 'Inter', sans-serif; }
     .glass {
@@ -96,175 +129,155 @@
     .dropdown-menu li:hover .submenu {
       display: block;
     }
-    /* Smooth transition for mobile menu */
-#mobile-menu {
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-#mobile-menu.hidden {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-#mobile-menu.flex {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-/* Backdrop blur effect */
-.backdrop-blur-lg {
-  backdrop-filter: blur(10px);
-}
-
+    #mobile-menu {
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    #mobile-menu.hidden {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    #mobile-menu.flex {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .backdrop-blur-lg {
+      backdrop-filter: blur(10px);
+    }
   </style>
 </head>
+
 <body class="bg-gray-950 text-white">
-  <header class="sticky top-0 z-50 bg-transparent backdrop-blur-md transition-colors duration-300 ease-in-out" id="header">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <!-- Logo Section -->
-      <a href="/" class="flex items-center">
-        <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-8 w-auto">
+  <header class="sticky top-0 z-50 bg-black/40 backdrop-blur-md shadow-md transition-all duration-300">
+  <div class="relative max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    
+    <!-- Left: Logo -->
+    <a href="/" class="flex items-center gap-2">
+      <img src="assets/images/logo.png" alt="Algolizen Logo" class="h-9 w-auto">
+      <span class="text-white font-bold text-xl tracking-tight"></span>
+    </a>
+
+    <!-- Center: Nav Menu -->
+    <nav class="hidden md:flex space-x-6 text-white absolute left-1/2 transform -translate-x-1/2">
+      <a href="/" class="relative group transition-transform hover:scale-105">
+        Home
+        <span class="absolute left-0 -bottom-1 h-[2px] w-0 bg-indigo-500 transition-all group-hover:w-full"></span>
       </a>
-  
-      <!-- Navigation Section -->
-      <nav class="hidden md:flex space-x-8 text-lg">
-        <a href="/about" class="hover:text-indigo-400 transition-transform hover:scale-105">About</a>
-        <a href="/contact" class="hover:text-indigo-400 transition-transform hover:scale-105">Contact</a>
-        <a href="/blog" class="hover:text-indigo-400 transition-transform hover:scale-105">Blog</a>
-        <div class="relative dropdown">
-          <button class="hover:text-indigo-400 transition-transform hover:scale-105">Services</button>
-          <ul class="dropdown-menu">
-            <li><a href="#" class="block hover:text-indigo-500">Web Development</a></li>
-            <li><a href="#" class="block hover:text-indigo-500">Custom Software</a></li>
-            <li class="relative">
-              <a href="#" class="block hover:text-indigo-500">Security</a>
-              <ul class="submenu">
-                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Pen Testing</a></li>
-                <li><a href="#" class="block hover:text-indigo-500 px-4 py-1">Audits</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  
-      <!-- Search Bar and CTA 
-      
-      <div class="hidden md:flex items-center space-x-4">
-        <div class="relative">
-          <form action="/search" method="GET" class="flex">
-            <input
-              type="text"
-              name="q"
-              placeholder="Search..."
-              class="px-4 py-2 rounded-l-full bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
-            <button
-              type="submit"
-              class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-r-full font-semibold"
-            >
-              <i class="fas fa-search"></i>
-            </button>
-          </form>
-        </div>
-        
-        
+      <div class="relative group">
+        <button class="hover:scale-105 transition">Services</button>
+        <!-- Dropdown (example static) -->
+        <ul class="absolute hidden group-hover:block bg-gray-800 text-white mt-2 rounded-lg shadow-lg py-2 min-w-[180px] z-20">
+          <li><a href="#" class="block px-4 py-2 hover:bg-indigo-600">Web Development</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-indigo-600">Custom Software</a></li>
+          <li class="relative group">
+            <a href="#" class="block px-4 py-2 hover:bg-indigo-600">Security</a>
+            <ul class="absolute left-full top-0 ml-1 hidden group-hover:block bg-gray-800 rounded-lg shadow-lg py-2 min-w-[160px]">
+              <li><a href="#" class="block px-4 py-1 hover:bg-indigo-600">Pen Testing</a></li>
+              <li><a href="#" class="block px-4 py-1 hover:bg-indigo-600">Audits</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      
-      -->
-      
-  <a
-          href="/contact"
-          class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-semibold shadow-lg transition transform hover:scale-110"
-        >
-          Get Started</a>
-      <!-- Mobile Menu Button -->
+      <a href="/projects.html" class="relative group hover:scale-105 transition-transform">Projects
+        <span class="absolute left-0 -bottom-1 h-[2px] w-0 bg-indigo-500 transition-all group-hover:w-full"></span>
+      </a>
+      <a href="/blog" class="relative group hover:scale-105 transition-transform">Blog
+        <span class="absolute left-0 -bottom-1 h-[2px] w-0 bg-indigo-500 transition-all group-hover:w-full"></span>
+      </a>
+      <a href="/about" class="relative group hover:scale-105 transition-transform">About
+        <span class="absolute left-0 -bottom-1 h-[2px] w-0 bg-indigo-500 transition-all group-hover:w-full"></span>
+      </a>
+    </nav>
+
+    <!-- Right: Search and CTA -->
+    <div class="hidden md:flex items-center space-x-4">
+      <!-- Search Bar -->
+      <form action="/search" method="GET" class="flex items-center bg-gray-800 rounded-full px-3 py-1 transition focus-within:ring-2 focus-within:ring-indigo-500">
+        <input type="text" name="q" placeholder="Search..." class="bg-transparent text-white px-2 py-1 focus:outline-none w-28 focus:w-40 transition-all duration-300" />
+        <button type="submit" class="text-indigo-400 hover:text-indigo-300 transition">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+
+      <!-- CTA Button -->
+      <a href="#contact" class="px-5 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+        Get Started
+      </a>
+    </div>
+    
+    
+  <!-- Mobile Menu Button -->
       <div class="md:hidden">
         <button id="menu-btn" class="text-2xl text-white"><i class="fas fa-bars"></i></button>
       </div>
     </div>
-  
-    <!-- Mobile Menu -->
-    <!-- Mobile Menu Overlay -->
+ 
+
+
+<!-- Mobile Menu -->
+
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-50 bg-gray-900/90 backdrop-blur-lg text-white hidden transition-transform duration-500 transform translate-x-full"
+  class="absolute top-0 left-0 w-full bg-gray-900 text-white hidden flex-col transition-transform duration-500 transform translate-y-full z-50 backdrop-blur-md shadow-lg"
 >
-  <!-- Header -->
-  <div class="flex justify-between items-center px-6 py-5 border-b border-gray-700">
-    
-    <button id="close-menu-btn" class="text-white text-2xl hover:text-indigo-400 transition">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
+ <!-- Header -->
+  <div class="flex justify-center items-center px-6 py-4 border-b border-gray-700 relative">
+  <span class="text-lg font-semibold">Menu</span>
+  <button id="close-menu-btn" class="absolute right-6 text-white text-2xl hover:text-indigo-400 transition">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+
+
+
 
   <!-- Menu Items -->
-  <ul class="mt-10 space-y-4 px-6">
+  <ul class="flex flex-col space-y-4 px-6 py-6 text-lg text-center">
+
+    <li><a href="/" class="block py-2 px-4 rounded hover:bg-indigo-600">Home</a></li>
+    <li><a href="/projects.html" class="block py-2 px-4 rounded hover:bg-indigo-600">Projects</a></li>
+    <li><a href="/blog" class="block py-2 px-4 rounded hover:bg-indigo-600">Blog</a></li>
+    <li><a href="/about" class="block py-2 px-4 rounded hover:bg-indigo-600">About</a></li>
     <li>
-      <a href="/service" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
-        <i class="fas fa-concierge-bell text-indigo-400"></i>
-        <span>Services</span>
-      </a>
-    </li>
-    <li>
-      <a href="/about" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
-        <i class="fas fa-user text-indigo-400"></i>
-        <span>About</span>
-      </a>
-    </li>
-    <li>
-      <a href="/contact" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
-        <i class="fas fa-envelope text-indigo-400"></i>
-        <span>Contact</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
-        <i class="fas fa-code text-indigo-400"></i>
-        <span>Web Development</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
-        <i class="fas fa-cogs text-indigo-400"></i>
-        <span>Custom Software</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-gray-800 hover:bg-indigo-600 transition-colors">
-        <i class="fas fa-shield-alt text-indigo-400"></i>
-        <span>Security</span>
+      <a href="#contact" class="block py-2 px-4 rounded bg-indigo-600 hover:bg-indigo-700 text-center">
+        Get Started
       </a>
     </li>
   </ul>
 </div>
 
-  </header>
+
+  
+</header>
+
   
   <script>
     // Change header background on scroll
    <!--  window.addEventListener("scroll", function () {
       const header = document.getElementById("header");
       if (window.scrollY > 50) {
-        header.classList.add("bg-black/70");
+        header.classList.add("bg-black/50");
       } else {
-        header.classList.remove("bg-black/70");
+        header.classList.remove("bg-black/50");
       }
     }); -->
   
     // Toggle mobile menu
-    document.getElementById("menu-btn").addEventListener("click", function () {
-      const menu = document.getElementById("mobile-menu");
-      menu.classList.remove("hidden");
-      menu.classList.add("flex");
-    });
+   const menuBtn = document.getElementById('menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-    // Close mobile menu
-    document.getElementById("close-menu-btn").addEventListener("click", function () {
-      const menu = document.getElementById("mobile-menu");
-      menu.classList.add("hidden");
-      menu.classList.remove("flex");
-    });
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('hidden');
+    mobileMenu.classList.remove('translate-y-full');
+    mobileMenu.classList.add('translate-y-0');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('translate-y-full');
+    setTimeout(() => {
+      mobileMenu.classList.add('hidden');
+    }, 500);
+  });
   </script>
   
   <section class="py-24 relative">
